@@ -305,8 +305,8 @@ def main():
     # Print data
     print(data_ranked)
 
-    # select Title, Citations, Year, Source
-    target = ['Title', 'Citations', 'Year', 'Source']
+    # select Title, Author, Citations, Year, Source
+    target = ['Title', 'Author', 'Citations', 'Year', 'Source']
     data_ranked = data_ranked[target]
 
     # Plot by citation number
@@ -323,7 +323,7 @@ def main():
         path = f"{directory}/{keyword}.csv"
         if not os.path.exists(directory):
             os.makedirs(directory)
-        data_ranked.to_csv(path, encoding='utf-8')
+        data_ranked.to_csv(path, encoding='utf-8', index=False)
         print('Results saved to', path)
 
 if __name__ == '__main__':
