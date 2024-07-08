@@ -141,7 +141,8 @@ def setup_driver():
     print('Loading...')
     chrome_options = Options()
     chrome_options.add_argument("disable-infobars")
-    driver = webdriver.Chrome(chrome_options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
+    # driver = webdriver.Chrome()
     return driver
 
 def get_author(content):
@@ -303,6 +304,10 @@ def main():
 
     # Print data
     print(data_ranked)
+
+    # select Title, Citations, Year, Source
+    target = ['Title', 'Citations', 'Year', 'Source']
+    data_ranked = data_ranked[target]
 
     # Plot by citation number
     if plot_results:
