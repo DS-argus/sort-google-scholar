@@ -290,9 +290,15 @@ def main():
                         columns=['Author', 'Title', 'Citations', 'Year', 'Publisher', 'Venue', 'Source'])
     data.index.name = 'Rank'
 
+<<<<<<< Updated upstream
     # Avoid years that are higher than the current year by clipping it to end_year
     data['cit/year']=data['Citations']/(end_year + 1 - data['Year'].clip(upper=end_year))
     data['cit/year']=data['cit/year'].round(0).astype(int)
+=======
+    # Add columns with number of citations per year
+    data['cit/year']=data['Citations']/(end_year + 1 - data['Year'])
+    # data['cit/year']=data['cit/year'].round(0).astype(int)
+>>>>>>> Stashed changes
 
     # Sort by the selected columns, if exists
     try:
@@ -305,8 +311,13 @@ def main():
     # Print data
     print(data_ranked)
 
+<<<<<<< Updated upstream
     # select Title, Author, Citations, Year, Source
     target = ['Title', 'Author', 'Citations', 'Year', 'Source']
+=======
+    # select Title, Citations, Year, Source
+    target = ['Title', 'Citations', 'Year', 'Source']
+>>>>>>> Stashed changes
     data_ranked = data_ranked[target]
 
     # Plot by citation number
@@ -319,12 +330,18 @@ def main():
 
     # Save results
     if save_database:
+<<<<<<< Updated upstream
         directory = f"out/{now.strftime('%y-%m-%d')}"
         path = f"{directory}/{keyword}.csv"
         if not os.path.exists(directory):
             os.makedirs(directory)
         data_ranked.to_csv(path, encoding='utf-8', index=False)
         print('Results saved to', path)
+=======
+        fpath_csv = os.path.join(path,keyword.replace(' ','_')+'.csv')
+        fpath_csv = fpath_csv[:MAX_CSV_FNAME]
+        data_ranked.to_csv(fpath_csv, encoding='utf-8', index=False)
+>>>>>>> Stashed changes
 
 if __name__ == '__main__':
         main()
