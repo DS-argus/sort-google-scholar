@@ -319,10 +319,12 @@ def main():
 
     # Save results
     if save_database:
-        fpath_csv = os.path.join(path,keyword.replace(' ','_')+'.csv')
-        fpath_csv = fpath_csv[:MAX_CSV_FNAME]
-        data_ranked.to_csv(fpath_csv, encoding='utf-8')
-        print('Results saved to', fpath_csv)
+        directory = f"out/{now.strftime('%y-%m-%d')}"
+        path = f"{directory}/{keyword}.csv"
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        data_ranked.to_csv(path, encoding='utf-8')
+        print('Results saved to', path)
 
 if __name__ == '__main__':
         main()
